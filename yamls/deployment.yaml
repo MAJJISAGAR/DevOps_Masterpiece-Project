@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-app-deployment
+  labels:
+    app: spring-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: spring-app
+  template:
+    metadata:
+      labels:
+        app: spring-app
+    spec:
+      containers:
+      - name: spring-app
+        image: indalarajesh/spring-app:13-cb4f7b574492edc89d08129b3560b9edcfa5d11f
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8081
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: spring-boot-service
+spec:
+  selector:
+    app: spring-app
+  type: NodePort
+  ports:
+  - name: http
+    port: 8081
+    targetPort: 8081
+    protocol: TCP
