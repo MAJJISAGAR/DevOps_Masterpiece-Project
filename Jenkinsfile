@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        NAME = "spring-app"
+        NAME = "spring-app1"
         VERSION = "${env.BUILD_ID}"
         IMAGE_REPO = "indalarajesh"
         GIT_REPO_NAME = "e2e-project"
