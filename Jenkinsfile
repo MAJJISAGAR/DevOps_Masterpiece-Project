@@ -56,6 +56,7 @@ pipeline {
                     if (fileExists('e2e-project')) {
                         echo 'Cloned repo already exists - Pulling latest changes'
                         dir("e2e-project") {
+                            sh 'git config pull.rebase true'
                             sh 'git pull --rebase'
                         }
                     } else {
