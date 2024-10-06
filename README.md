@@ -5,7 +5,8 @@
 
 This project automates the build, test, and deployment processes using Jenkins. The application is built, tested, and deployed as a Docker container to a Kubernetes (K8s) cluster. The following diagram illustrates the architecture:
 
-![Pipeline Architecture](1_MPeHOvu294XzZ7ONfHBU4A.webp)
+### Architecture Diagram:
+![Architecture Diagram](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*MPeHOvu294XzZ7ONfHBU4A.png)
 
 ## Pipeline Flow
 
