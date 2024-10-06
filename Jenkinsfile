@@ -5,7 +5,7 @@ pipeline {
         NAME = "spring-app1"
         VERSION = "${env.BUILD_ID}"
         IMAGE_REPO = "indalarajesh"
-        GIT_REPO_NAME = "e2e-project"
+        GIT_REPO_NAME = "DevOps_Masterpiece-Project"
         GIT_USER_NAME = "INDALARAJESH"
     }
 
@@ -16,7 +16,7 @@ pipeline {
     stages {
         stage('Checkout git') {
             steps {
-                git branch: 'main', url: 'https://github.com/INDALARAJESH/e2e-project.git'
+                git branch: 'main', url: 'https://github.com/INDALARAJESH/DevOps_Masterpiece-Project.git'
             }
         }
 
@@ -53,15 +53,15 @@ pipeline {
         stage('Clone/Pull k8s deployment Repo') {
             steps {
                 script {
-                    if (fileExists('e2e-project')) {
+                    if (fileExists('DevOps_Masterpiece-Project')) {
                         echo 'Cloned repo already exists - Pulling latest changes'
-                        dir("e2e-project") {
+                        dir("DevOps_Masterpiece-Project") {
                             sh 'git config pull.rebase true'
                             sh 'git pull --rebase'
                         }
                     } else {
                         echo 'Repo does not exist - Cloning the repo'
-                        sh 'git clone -b feature https://github.com/INDALARAJESH/e2e-project.git'
+                        sh 'git clone -b feature https://github.com/INDALARAJESH/DevOps_Masterpiece-Project.git'
                     }
                 }
             }
@@ -69,7 +69,7 @@ pipeline {
         
         stage('Update deployment Manifest') {
             steps {
-                dir("e2e-project/yamls") {
+                dir("DevOps_Masterpiece-Project/yamls") {
                     sh 'sed -i "s#indalarajesh.*#${IMAGE_REPO}/${NAME}:${VERSION}-${GIT_COMMIT}#g" deployment.yaml'
                     sh 'cat deployment.yaml'
                 }
@@ -79,7 +79,7 @@ pipeline {
         stage('Commit & Push changes to feature branch') {
             steps {
                 withCredentials([string(credentialsId: 'GITHUB_TOKEN', variable: 'GITHUB_TOKEN')]) {
-                    dir("e2e-project/yamls") {
+                    dir("DevOps_Masterpiece-Project/yamls") {
                         sh "git config --global user.email 'rajeshindala1997@gmail.com'"
                         sh "git config --global user.name 'INDALARAJESH'"
                         sh 'git remote set-url origin https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME}'
@@ -95,7 +95,7 @@ pipeline {
         stage('Raise PR') {
             steps {
                 withCredentials([string(credentialsId: 'GITHUB_TOKEN', variable: 'GITHUB_TOKEN')]) {
-                    dir("e2e-project/yamls") {
+                    dir("DevOps_Masterpiece-Project/yamls") {
                         sh '''
                             unset GITHUB_TOKEN
                             echo "${GITHUB_TOKEN}" | gh auth login --with-token
