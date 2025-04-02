@@ -4,7 +4,7 @@ pipeline {
     environment {
         NAME = "spring-app1"
         VERSION = "${env.BUILD_ID}"
-        IMAGE_REPO = "majjisagar"
+        IMAGE_REPO = "sagar520"
         GIT_REPO_NAME = "DevOps_Masterpiece-Project"
         GIT_USER_NAME = "MAJJISAGAR"
     }
