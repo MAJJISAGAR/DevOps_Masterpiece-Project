@@ -70,7 +70,7 @@ pipeline {
         stage('Update deployment Manifest') {
             steps {
                 dir("DevOps_Masterpiece-Project/yamls") {
-                    sh 'sed -i "s#indalarajesh.*#${IMAGE_REPO}/${NAME}:${VERSION}-${GIT_COMMIT}#g" deployment.yaml'
+                    sh 'sed -i "s#sagar520.*#${IMAGE_REPO}/${NAME}:${VERSION}-${GIT_COMMIT}#g" deployment.yaml'
                     sh 'cat deployment.yaml'
                 }
             }
