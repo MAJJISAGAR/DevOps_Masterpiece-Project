@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: spring-app
-        image: sagar520/spring-app1:2-4097f515892d23248a195d0c6e96dbaa7aae3c9
+        image: sagar520/spring-app1:1-0acfcdd9f315782d2e7fd833e5c548209bc2d3b9
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8081
